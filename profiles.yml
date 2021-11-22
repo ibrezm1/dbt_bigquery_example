@@ -1,7 +1,22 @@
 # Note that only one of these targets is required
 # setup IAM roles: https://docs.getdbt.com/docs/profile-bigquery#section-required-permissions
 
+# example profiles.yml file
 jaffle_shop:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: zeta-yen-319702
+      dataset: test2  # You can also use "schema" here
+      threads: 1
+      timeout_seconds: 300
+      location: US # Optional, one of US or EU
+      priority: interactive
+      retries: 1
+
+jaffle_shop_old:
   # use the below for oauth authenticated dbt runs
   target: dev
   outputs:
@@ -14,6 +29,21 @@ jaffle_shop:
       timeout_seconds: 300
       location: US # Optional, one of US or EU
       priority: interactive # interactive or batch
+
+# example profiles.yml file
+jaffle_shop:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: zeta-yen-319702
+      dataset: test2  # You can also use "schema" here
+      threads: 1
+      timeout_seconds: 300
+      location: US # Optional, one of US or EU
+      priority: interactive
+      retries: 1
 
     # use the below for service account authenticated dbt runs
     service_account_runs:
